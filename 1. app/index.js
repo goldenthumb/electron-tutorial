@@ -23,13 +23,14 @@ app.on('ready', (launchInfo) => {
   // BrowserWindow 는 브라우저 윈도우를 생성하고 제어합니다.
   const win = new BrowserWindow({ width: 800, height: 600 });
 
+  // 로딩할 컨텐츠 삽입
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
   }));
 
-  // Or Load a remote URL
+  // 원격 URL 도 로드할 수 있습니다.
   // win.loadURL('https://github.com');
 });
 
