@@ -10,12 +10,9 @@
 <button id="sync">sync</button>
 
 <script>
-  const async = document.querySelector('#async');
-  const sync = document.querySelector('#sync');
-
   const { ipcRenderer } = require('electron');
 
-  async.addEventListener('click', () => {
+  document.querySelector('#async').addEventListener('click', () => {
     ipcRenderer.send('async-message', 'async ping');
   });
 
@@ -23,7 +20,7 @@
     console.log(arg);  // async pong
   });
 
-  sync.addEventListener('click', () => {
+  document.querySelector('#sync').addEventListener('click', () => {
     const reply = ipcRenderer.sendSync('sync-message', 'sync ping');
     console.log(reply); // sync pong
   });
