@@ -1,10 +1,13 @@
 const { app, BrowserWindow } = require('electron');
 
+let main = null;
+let child = null;
+
 app.on('ready', () => {
   console.log('ready');
 
   // 첫번째 윈도우
-  const main = new BrowserWindow({
+  main = new BrowserWindow({
     width: 800,   // 너비
     height: 800,    // 높이
     show: false,    // 처음에 보여주지 않다가 ready-to-show 이벤트가 오면 화면을 보여 줍니다.
@@ -47,7 +50,7 @@ app.on('ready', () => {
 
 
   // 두번째 윈도우
-  const child = new BrowserWindow({
+  child = new BrowserWindow({
     width: 600,
     height: 600,
     parent: main,
@@ -62,7 +65,7 @@ app.on('ready', () => {
   child.loadURL('https://github.com');
 
   child.once('ready-to-show', () => {
-      child.show();
+    child.show();
   });
 
   child.on('move', () => {

@@ -2,6 +2,11 @@ const { app, BrowserWindow } = require('electron');
 const url = require('url');
 const path = require('path');
 
+let win;  // BrowserWindow
+// 윈도우, tray 와 같은 객체는 전역에 유지 해야합니다.
+// 자동으로 메모리가 반환(garbage collection)될 때 창이 멋대로 닫혀버립니다.
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
+
 // app 은 애플리케이션의 이벤트 생명 주기를 제어합니다.
 // [Reference] https://electronjs.org/docs/api/app
 
@@ -21,7 +26,7 @@ app.on('ready', (launchInfo) => {
   console.log(`isReady : ${app.isReady()}`);
 
   // BrowserWindow 는 브라우저 윈도우를 생성하고 제어합니다.
-  const win = new BrowserWindow({ width: 800, height: 600 });
+  win = new BrowserWindow({ width: 800, height: 600 });
 
   // 로딩할 컨텐츠 삽입
   win.loadURL(url.format({
@@ -32,6 +37,12 @@ app.on('ready', (launchInfo) => {
 
   // 원격 URL 도 로드할 수 있습니다.
   // win.loadURL('https://github.com');
+
+
+  // process 정보 (https://electronjs.org/docs/api/process)
+  const { type, versions } = process;
+  console.log(`process type : ${type}`);
+  console.log(`process version : ${JSON.stringify(versions)}`);
 });
 
 

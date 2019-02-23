@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2>ipcMain, ipcRenderer</h2>
+<button id="async">async</button>
+<button id="sync">sync</button>
+
+<script>
+  const async = document.querySelector('#async');
+  const sync = document.querySelector('#sync');
+
+  const { ipcRenderer } = require('electron');
+
+  async.addEventListener('click', () => {
+    ipcRenderer.send('async-message', 'async ping');
+  });
+
+  ipcRenderer.on('async-reply', (event, arg) => {
+    console.log(arg);  // async pong
+  });
+
+  sync.addEventListener('click', () => {
+    const reply = ipcRenderer.sendSync('sync-message', 'sync ping');
+    console.log(reply); // sync pong
+  });
+</script>
+</body>
+</html>
