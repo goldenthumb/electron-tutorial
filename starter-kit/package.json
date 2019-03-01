@@ -5,9 +5,10 @@
   "main": "app/main.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/devserver.js",
-    "start": "npm run build && npm run start-maincross-env NODE_ENV=production electron ./app/main.js",
+    "start": "npm run build && npm run start-main cross-env NODE_ENV=production electron ./app/main.js",
     "package": "npm run build && electron-builder build --publish never",
     "build": "cross-env NODE_ENV=production webpack --config configs/build",
+    "start-main": "cross-env NODE_ENV=production electron ./app/main.js",
     "start-main-dev": "cross-env NODE_ENV=development electron ./app/main.js"
   },
   "build": {
