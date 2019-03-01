@@ -1,6 +1,4 @@
 const { resolve } = require('path');
-const autoprefixer = require('autoprefixer');
-
 const port = process.env.PORT || 3000;
 
 module.exports = {
@@ -34,14 +32,6 @@ module.exports = {
             options: {
               modules: true,
               localIdentName: '[local]_[hash:base64:4]'
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [
-                autoprefixer('last 2 versions', 'ie 10')
-              ]
             }
           },
           'sass-loader'
