@@ -48,7 +48,6 @@ app.on('ready', () => {
     console.log('main win focus');
   });
 
-
   // 두번째 윈도우
   child = new BrowserWindow({
     width: 600,

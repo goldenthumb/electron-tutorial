@@ -1,8 +1,6 @@
 const { app, BrowserWindow } = require('electron');
-const url = require('url');
-const path = require('path');
 
-let win;  // BrowserWindow
+let win = null;  // BrowserWindow
 // 윈도우, tray 와 같은 객체는 전역에 유지 해야합니다.
 // 자동으로 메모리가 반환(garbage collection)될 때 창이 멋대로 닫혀버립니다.
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
@@ -12,10 +10,8 @@ let win;  // BrowserWindow
 
 // 애플리케이션이 기본적인 시작 준비를 마치면 발생하는 이벤트입니다.
 app.on('will-finish-launching', () => {
-  /*
-   Windows 와 Linux 는 ready 이벤트와 동일
-   macOS 는 NSApplication > applicationWillFinishLaunching 에 대한 알림으로 표현 됩니다.
-  */
+  // Windows 와 Linux 는 ready 이벤트와 동일
+  // macOS 는 NSApplication > applicationWillFinishLaunching 에 대한 알림으로 표현 됩니다.
 
   console.log('will-finish-launching');
 });
@@ -29,15 +25,10 @@ app.on('ready', (launchInfo) => {
   win = new BrowserWindow({ width: 800, height: 600 });
 
   // 로딩할 컨텐츠 삽입
-  win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
+  win.loadURL(`file://${__dirname}/index.html`);
 
   // 원격 URL 도 로드할 수 있습니다.
   // win.loadURL('https://github.com');
-
 
   // process 정보 (https://electronjs.org/docs/api/process)
   const { type, versions } = process;
@@ -45,18 +36,14 @@ app.on('ready', (launchInfo) => {
   console.log(`process version : ${JSON.stringify(versions)}`);
 });
 
-
 // 모든 윈도우가 종료되었을 때 발생하는 이벤트입니다.
 app.on('window-all-closed', () => {
-  /*
-    이 이벤트를 구독하지 않고 모든 창이 닫혀있다면, 기본 동작은 앱을 종료시키는 것입니다.
-    (before-quit => will-quit => quit)
-  */
+  // 이 이벤트를 구독하지 않고 모든 창이 닫혀있다면, 기본 동작은 앱을 종료시키는 것입니다.
+  // (before-quit => will-quit => quit)
 
   console.log('window-all-closed');
   app.quit();  // 애플리케이션을 종료
 });
-
 
 // 앱이 종료가 되면서 앱의 모든 윈도우를 닫기 시작 전에 발생하는 이벤트입니다.
 app.on('before-quit', (event) => {
@@ -65,7 +52,6 @@ app.on('before-quit', (event) => {
 
   console.log('before-quit');
 });
-
 
 // 모든 윈도우가 닫히고 앱이 종료하기 직전에 불립니다.
 app.on('will-quit', (event) => {
