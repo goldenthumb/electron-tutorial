@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const {app, BrowserWindow} = require('electron');
 
 class Main {
   private _app: any = app;
@@ -24,7 +24,10 @@ class Main {
     this._win = new BrowserWindow({
       width: 800,
       height: 600,
-      show: false
+      show: false,
+      webPreferences: {
+        nodeIntegration: true
+      }
     });
 
     this._win.loadURL(`file://${__dirname}/../index.html`);
