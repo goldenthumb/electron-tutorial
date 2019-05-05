@@ -1,16 +1,10 @@
 const { app, BrowserWindow } = require('electron');
 
-if (process.env.NODE_ENV === 'development') {
-  require('electron-debug')();
-}
-
 class Main {
-  private _app;
-  private _win = null;
+  private _app: any = app;
+  private _win: any = null;
 
   constructor() {
-    this._app = app;
-
     this._app.on('ready', this._createWindow);
 
     this._app.on('window-all-closed', () => {
@@ -34,10 +28,6 @@ class Main {
     });
 
     this._win.loadURL(`file://${__dirname}/../index.html`);
-
-    if (process.env.NODE_ENV === 'development') {
-      this._win.webContents.openDevTools();
-    }
 
     this._win.once('ready-to-show', () => {
       this._win.show();

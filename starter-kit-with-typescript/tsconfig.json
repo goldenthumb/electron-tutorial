@@ -4,7 +4,7 @@
     "target": "es6",
     "outDir": "app/dist",
     "sourceMap": false,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "jsx": "react"
   }
 }
-  
