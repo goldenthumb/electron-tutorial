@@ -1,0 +1,19 @@
+{
+  "name": "starter-kit-with-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/dist/main.js",
+  "scripts": {
+    "dev": "npm run transpile && electron .",
+    "transpile": "tsc",
+    "transpile:watch": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^5.0.1",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  }
+}
