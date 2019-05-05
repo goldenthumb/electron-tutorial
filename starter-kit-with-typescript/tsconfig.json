@@ -3,7 +3,7 @@
     "module": "commonjs",
     "target": "es6",
     "outDir": "app/dist",
-    "sourceMap": true,
+    "sourceMap": false,
     "moduleResolution": "node"
   }
 }

@@ -1,43 +1,52 @@
 const { app, BrowserWindow } = require('electron');
 
-let mainWindow = null;
-
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')();
 }
 
-const createWindow = () => {
-  mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    show: false
-  });
+class Main {
+  private _app;
+  private _win = null;
 
-  mainWindow.loadURL(`file://${__dirname}/../index.html`);
+  constructor() {
+    this._app = app;
 
-  if (process.env.NODE_ENV === 'development') {
-    mainWindow.webContents.openDevTools();
+    this._app.on('ready', this._createWindow);
+
+    this._app.on('window-all-closed', () => {
+      if (process.platform !== 'darwin') {
+        this._app.quit();
+      }
+    });
+
+    this._app.on('activate', () => {
+      if (this._win === null) {
+        this._createWindow();
+      }
+    });
   }
 
-  mainWindow.once('ready-to-show', () => {
-    mainWindow.show();
-  });
+  private _createWindow = (): void => {
+    this._win = new BrowserWindow({
+      width: 800,
+      height: 600,
+      show: false
+    });
 
-  mainWindow.on('closed', () => {
-    app.quit();
-  });
-};
+    this._win.loadURL(`file://${__dirname}/../index.html`);
 
-app.on('ready', createWindow);
+    if (process.env.NODE_ENV === 'development') {
+      this._win.webContents.openDevTools();
+    }
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
+    this._win.once('ready-to-show', () => {
+      this._win.show();
+    });
+
+    this._win.on('closed', () => {
+      this._app.quit();
+    });
   }
-});
+}
 
-app.on('activate', () => {
-  if (mainWindow === null) {
-    createWindow();
-  }
-});
+new Main();
