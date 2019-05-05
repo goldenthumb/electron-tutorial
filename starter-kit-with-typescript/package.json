@@ -4,10 +4,44 @@
   "description": "",
   "main": "app/dist/main.js",
   "scripts": {
+    "dev": "tsc && npm run webpack:dev",
+    "build": "tsc && webpack --config webpack/build.js",
     "build:start": "npm run build && electron .",
-    "build": "npm run transpile && webpack --config webpack/build.js",
-    "transpile": "tsc",
-    "transpile:watch": "tsc --watch"
+    "package": "npm run build && electron-builder build --publish never",
+    "webpack:dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack/devserver.js",
+    "electron:dev": "cross-env NODE_ENV=development electron ./app/dist/main.js"
+  },
+  "build": {
+    "productName": "HelloElectron",
+    "appId": "com.electron.hello",
+    "asar": true,
+    "protocols": {
+      "name": "helloElectron",
+      "schemes": [
+        "helloelectron"
+      ]
+    },
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "./resources/installer/icon.icns"
+    },
+    "dmg": {
+      "title": "HelloElectron",
+      "icon": "./resources/installer/icon.icns"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ],
+      "icon": "./resources/installer/icon.ico"
+    },
+    "directories": {
+      "buildResources": "resources",
+      "output": "release"
+    }
   },
   "keywords": [],
   "author": "",
@@ -15,9 +49,13 @@
   "devDependencies": {
     "cross-env": "^5.2.0",
     "cross-spawn": "^6.0.5",
-    "electron": "^5.0.1",
+    "electron": "^4.0.5",
+    "electron-builder": "^20.39.0",
     "electron-debug": "^2.2.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
     "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
     "ts-loader": "^5.4.5",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5",
