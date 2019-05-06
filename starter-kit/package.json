@@ -55,7 +55,7 @@
     "cross-env": "^5.2.0",
     "cross-spawn": "^6.0.5",
     "css-loader": "^2.1.0",
-    "electron": "^4.0.5",
+    "electron": "^5.0.1",
     "electron-builder": "^20.38.5",
     "electron-debug": "^2.1.0",
     "eslint": "^5.14.1",

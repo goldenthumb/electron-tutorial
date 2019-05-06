@@ -10,7 +10,10 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    show: false
+    show: false,
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
