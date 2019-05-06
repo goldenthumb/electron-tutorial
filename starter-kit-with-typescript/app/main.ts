@@ -1,8 +1,8 @@
-const {app, BrowserWindow} = require('electron');
+import { app, BrowserWindow } from 'electron';
 
 class Main {
-  private _app: any = app;
-  private _win: any = null;
+  private _app: Electron.App = app;
+  private _win: Electron.BrowserWindow = null;
 
   constructor() {
     this._app.on('ready', this._createWindow);
