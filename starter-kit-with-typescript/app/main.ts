@@ -30,7 +30,7 @@ class Main {
       }
     });
 
-    this._win.loadURL(`file://${__dirname}/../index.html`);
+    this._win.loadURL(`file://${__dirname}/index.html`);
 
     this._win.once('ready-to-show', () => {
       this._win.show();

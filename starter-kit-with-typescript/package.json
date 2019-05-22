@@ -2,14 +2,14 @@
   "name": "starter-kit-with-typescript",
   "version": "1.0.0",
   "description": "",
-  "main": "app/dist/main.js",
+  "main": "app/main.js",
   "scripts": {
     "dev": "tsc && npm run webpack:dev",
     "build": "tsc && webpack --config webpack/build.js",
     "build:start": "npm run build && electron .",
     "package": "npm run build && electron-builder build --publish never",
     "webpack:dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack/devserver.js",
-    "electron:dev": "cross-env NODE_ENV=development electron ./app/dist/main.js"
+    "electron:dev": "cross-env NODE_ENV=development electron ./app/main.js"
   },
   "build": {
     "productName": "HelloElectron",
