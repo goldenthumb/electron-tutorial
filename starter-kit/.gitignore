@@ -2,3 +2,5 @@ node_modules/
 .idea/
 dist/
 release/
+.histroy/
+*.lock
