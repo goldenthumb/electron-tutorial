@@ -9,7 +9,9 @@
         "package": "rimraf release && npm run build && electron-builder build --publish never",
         "build": "cross-env NODE_ENV=production webpack --config configs/build",
         "start-main": "cross-env NODE_ENV=production electron ./app/main.js",
-        "start-main-dev": "cross-env NODE_ENV=development electron ./app/main.js"
+        "start-main-dev": "cross-env NODE_ENV=development electron ./app/main.js",
+        "lint": "eslint 'app/**/*.js'",
+        "lint-fix": "eslint --fix 'app/**/*.js'"
     },
     "build": {
         "productName": "HelloElectron",
@@ -43,6 +45,18 @@
             "output": "release"
         }
     },
+    "eslintConfig": {
+        "env": {
+            "browser": true
+        },
+        "extends": "goldenthumb/react",
+        "rules": {
+            "import/no-extraneous-dependencies": "off"
+        }
+    },
+    "eslintIgnore": [
+        "dist"
+    ],
     "keywords": [],
     "author": "",
     "license": "MIT",
@@ -55,15 +69,10 @@
         "cross-env": "^7.0.2",
         "cross-spawn": "^7.0.3",
         "css-loader": "^4.2.1",
-        "electron": "^9.2.0",
         "electron-builder": "^22.8.0",
         "electron-debug": "^3.1.0",
         "eslint": "^7.7.0",
-        "eslint-config-airbnb": "^18.2.0",
-        "eslint-config-airbnb-base": "^14.2.0",
-        "eslint-plugin-import": "^2.22.0",
-        "eslint-plugin-jsx-a11y": "^6.3.1",
-        "eslint-plugin-react": "^7.20.6",
+        "eslint-config-goldenthumb": "^0.0.19",
         "node-sass": "^4.14.1",
         "rimraf": "^3.0.2",
         "sass-loader": "^9.0.3",
@@ -73,6 +82,7 @@
         "webpack-dev-server": "^3.11.0"
     },
     "dependencies": {
+        "electron": "^9.2.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1"
     }
