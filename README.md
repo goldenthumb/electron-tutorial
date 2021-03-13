@@ -2,33 +2,53 @@
 
 [https://goldenthumb.net/electron-tutorial](https://goldenthumb.net/electron-tutorial)
 
+<br />
+
+## Install
+`
+npm run bootstrap
+`
+
+<br />
+
+## Tutorial - App
+`
+npm run tutorial:app
+`
+
+<br />
+
+## Tutorial - BrowserWindow
+`
+npm run tutorial:browser-window
+`
+
+<br />
+
+## Tutorial - IpcMain
+`
+npm run tutorial:ipc-main
+`
+
+<br />
+
+## Tutorial - Menu
+`
+npm run tutorial:menu
+`
+
+<br />
+
+## Tutorial - etc
+`
+npm run tutorial:etc
+`
+
+<br />
+
 ## Electron quick starter kit
+https://github.com/goldenthumb/electron-boilerplate
 
-Electron React Boilerplate uses Electron, React and Webpack.
-
-### To Use
-
-```bash
-$ git clone https://github.com/goldenthumb/electron-tutorial.git
-$ cd electron-tutorial/starter-kit
-$ npm install
-```
-
-### Starting Development
-
-```bash
-$ npm run dev
-```
-
-### Packaging for Production
-
-```bash
-$ npm run package
-```
-
-## Electron quick starter kit (typescript)
-
-[Electron Boilerplate](https://github.com/goldenthumb/electron-boilerplate.git) uses Electron, React and Typescript.
 
 ## License
 

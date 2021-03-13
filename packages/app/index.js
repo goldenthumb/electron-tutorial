@@ -50,14 +50,14 @@ app.on('before-quit', (event) => {
     // 이 이벤트는 이미 닫혀있어도 불립니다.
     // event.preventDefault() 를 호출하면 기본 동작인 어플리케이션 종료를 하지 않습니다.
 
-    console.log('before-quit');
+    console.log('before-quit', event);
 });
 
 // 모든 윈도우가 닫히고 앱이 종료하기 직전에 불립니다.
 app.on('will-quit', (event) => {
     // event.preventDefault() 를 호출하면 기본 동작인 어플리케이션 종료를 하지 않습니다.
 
-    console.log('will-quit');
+    console.log('will-quit', event);
 });
 
 // 최종적으로 앱이 종료할 때 발생됩니다.

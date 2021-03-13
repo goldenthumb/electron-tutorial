@@ -23,7 +23,7 @@
         <button id="openExternal">open external</button>
 
         <script>
-            const { dialog, shell } = require('electron').remote;
+            const { ipcRenderer, shell } = require('electron');
             // 이벤트를 연결하기 위해 dialog 와 shell 은 Electron 의 메인 쓰레드에서 불러옵니다.
 
             const $openFile = document.querySelector('#openFile');
@@ -35,41 +35,19 @@
 
             // dialog example
             $openFile.addEventListener('click', () => {
-                dialog.showOpenDialog({
-                    properties: ['openFile', 'openDirectory', 'multiSelections'],
-                    filters: [
-                        { name: 'Images', extensions: ['jpg', 'png', 'gif'] },
-                        { name: 'Movies', extensions: ['mkv', 'avi', 'mp4'] },
-                    ], // filters 값으로 표시하거나 선택할 수 있는 파일의 종류를 설정할 수 있습니다.
-                });
+                ipcRenderer.send('showOpenDialog');
             });
 
             $save.addEventListener('click', () => {
-                dialog.showSaveDialog({
-                    title: 'title',
-                    buttonLabel: 'save',
-                    message: 'message',
-                });
+                ipcRenderer.send('showSaveDialog');
             });
 
             $msgBox.addEventListener('click', () => {
-                dialog.showMessageBox(
-                    {
-                        type: 'info', // none, info, error, question, warning
-                        message: 'message',
-                        detail: 'detail',
-                        buttons: ['confirm', 'cancel'],
-                        checkboxLabel: 'check',
-                        checkboxChecked: false,
-                    },
-                    (res, checked) => {
-                        console.log(res === 0 ? 'confirm' : 'cancel', checked);
-                    },
-                );
+                ipcRenderer.send('showMessageBox');
             });
 
             $alert.addEventListener('click', () => {
-                dialog.showErrorBox('title', 'content');
+                ipcRenderer.send('showErrorBox');
             });
 
             // shell example

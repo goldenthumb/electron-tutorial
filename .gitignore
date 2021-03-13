@@ -2,5 +2,6 @@ node_modules/
 .idea/
 dist/
 release/
-*.lock
 .history
+.cache
+lerna-debug.log

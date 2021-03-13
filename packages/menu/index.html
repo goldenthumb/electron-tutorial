@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+    </head>
+    <body>
+        <h2>Remote</h2>
+        <h3>top menu, context menu example</h3>
+        <h4>1. click top menu button</h4>
+        <h4>2. click right mouse button</h4>
+        <script>
+            const { ipcRenderer } = require('electron');
+
+            window.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                ipcRenderer.send('showContextMenu');
+            });
+        </script>
+    </body>
+</html>

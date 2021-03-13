@@ -13,15 +13,15 @@
             const { ipcRenderer } = require('electron');
 
             document.querySelector('#async').addEventListener('click', () => {
-                ipcRenderer.send('async-message', 'async ping');
+                ipcRenderer.send('asyncMessage', 'async ping');
             });
 
-            ipcRenderer.on('async-reply', (event, arg) => {
+            ipcRenderer.on('asyncReply', (event, arg) => {
                 console.log(arg); // async pong
             });
 
             document.querySelector('#sync').addEventListener('click', () => {
-                const reply = ipcRenderer.sendSync('sync-message', 'sync ping');
+                const reply = ipcRenderer.sendSync('syncMessage', 'sync ping');
                 console.log(reply); // sync pong
             });
         </script>
